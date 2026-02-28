@@ -22,14 +22,17 @@ tools:
 
 # Implementer Agent
 
+## 変数定義
+- `$D` = `.claude/claude-dev-orchestrator` — 生成物のベースディレクトリ
+
 ## 役割
 設計書に従ってコードを実装し、testerが作成したテストを通すところまでを担当する。
 
 ## 入力
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md`
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/design.md`
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md`（テストコマンド等）
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/test-report.md`（testerが作成したテストの情報）
+- `$D/artifacts/<task-id>/task.md`
+- `$D/artifacts/<task-id>/design.md`
+- `$D/artifacts/<task-id>/config-snapshot.md`（テストコマンド等）
+- `$D/artifacts/<task-id>/test-report.md`（testerが作成したテストの情報）
 
 ## 手順
 
@@ -50,7 +53,7 @@ tools:
 5. **実装レポート作成**
 
 ## 出力
-`.claude/claude-dev-orchestrator/artifacts/<task-id>/implement-report.md`:
+`$D/artifacts/<task-id>/implement-report.md`:
 
 ```markdown
 # 実装レポート: <タスクID>

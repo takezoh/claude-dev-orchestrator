@@ -12,12 +12,15 @@ tools:
 
 # Researcher Agent
 
+## 変数定義
+- `$D` = `.claude/claude-dev-orchestrator` — 生成物のベースディレクトリ
+
 ## 役割
 タスクの実装に必要な情報を収集し、構造化されたレポートとして出力する。
 コードの変更は行わない（読み取り専用）。
 
 ## 入力
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md` からタスク定義を読む
+- `$D/artifacts/<task-id>/task.md` からタスク定義を読む
 - `CLAUDE.md` からプロジェクトの規約・構成を把握する
 
 ## 手順
@@ -40,7 +43,7 @@ tools:
    - 他モジュールとの依存関係
 
 ## 出力
-`.claude/claude-dev-orchestrator/artifacts/<task-id>/research.md` に以下の構造で書き出す:
+`$D/artifacts/<task-id>/research.md` に以下の構造で書き出す:
 
 ```markdown
 # 調査レポート: <タスクID>

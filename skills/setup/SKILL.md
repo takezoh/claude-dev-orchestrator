@@ -1,5 +1,8 @@
 # setup Skill - プロジェクトへの dev-orchestrator セットアップ
 
+## 変数定義
+- `$D` = `.claude/claude-dev-orchestrator` — 生成物のベースディレクトリ
+
 ## 概要
 現在のプロジェクトに dev-orchestrator を対話的にセットアップする。
 プロジェクト情報をヒアリングし、設定ファイル・ディレクトリ・パーミッションを一括で構成する。
@@ -12,7 +15,7 @@
 ### Step 1: プロジェクト状態の確認
 1. 以下のファイル/ディレクトリの存在を確認する:
    - `.claude/dev-orchestrator.yml`
-   - `.claude/claude-dev-orchestrator/tasks/`
+   - `$D/tasks/`
    - `.claude/settings.json`（permissions.allow）
    - `.gitignore`
 2. 既にセットアップ済みの項目をリストアップする
@@ -86,17 +89,17 @@ review:
 # Claude Codeモデル設定
 model: "claude-sonnet-4-6"
 
-# 生成物の保存先（.claude/claude-dev-orchestrator/ 配下に固定）
-# artifacts: .claude/claude-dev-orchestrator/artifacts/<task-id>/
-# logs: .claude/claude-dev-orchestrator/logs/
+# 生成物の保存先（$D/ 配下に固定）
+# artifacts: $D/artifacts/<task-id>/
+# logs: $D/logs/
 ```
 
-#### 3-2. `.claude/claude-dev-orchestrator/tasks/` ディレクトリの作成
-- `.claude/claude-dev-orchestrator/tasks/` がなければ作成する
+#### 3-2. `$D/tasks/` ディレクトリの作成
+- `$D/tasks/` がなければ作成する
 
 #### 3-3. `.gitignore` の更新
 以下のエントリが `.gitignore` になければ追加する:
-- `.claude/claude-dev-orchestrator/`
+- `$D/`
 
 #### 3-4. パーミッション設定
 `.claude/settings.json` に Agent/Skill が使うコマンドの allow ルールを追加する。
@@ -126,7 +129,7 @@ model: "claude-sonnet-4-6"
 ```
 セットアップ完了:
   ✅ .claude/dev-orchestrator.yml を作成
-  ✅ .claude/claude-dev-orchestrator/tasks/ を作成
+  ✅ $D/tasks/ を作成
   ✅ .gitignore を更新
   ✅ パーミッション設定を追加（N項目）
   ⚠️ スキップ: <既に存在した項目>

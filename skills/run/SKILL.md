@@ -1,7 +1,10 @@
 # run Skill - pendingタスクをバッチ実行
 
+## 変数定義
+- `$D` = `.claude/claude-dev-orchestrator` — 生成物のベースディレクトリ
+
 ## 概要
-`.claude/claude-dev-orchestrator/tasks/` 内の pending タスクを tmux セッションで並列バッチ実行する。
+`$D/tasks/` 内の pending タスクを tmux セッションで並列バッチ実行する。
 各タスクは独立した worktree と Claude Code プロセスで処理される。
 
 ## 入力
@@ -14,11 +17,11 @@
 ### Step 1: 設定読み込み
 1. `.claude/dev-orchestrator.yml` を読み込む（なければデフォルト使用）
    - `model`: 使用モデル（デフォルト: `claude-sonnet-4-6`）
-   - 生成物保存先: `.claude/claude-dev-orchestrator/`
+   - 生成物保存先: `$D/`
 
 ### Step 2: 対象タスクの特定
 1. `$ARGUMENTS` が指定されていればそれを対象とする
-2. 未指定なら `.claude/claude-dev-orchestrator/tasks/task-*.md` から `status: pending` のものを番号順に収集する
+2. 未指定なら `$D/tasks/task-*.md` から `status: pending` のものを番号順に収集する
 3. 対象タスクが0件なら「pending タスクがありません」と報告して終了
 
 ### Step 3: 事前チェック
@@ -42,8 +45,8 @@
 ユーザーが承認した場合、各タスクについて以下を実行する:
 
 1. 既に同名の tmux セッション（`agent-<task-id>`）が存在する場合はスキップ
-2. `.claude/claude-dev-orchestrator/logs/` ディレクトリを作成
-3. `.claude/claude-dev-orchestrator/artifacts/<task-id>/` ディレクトリを作成
+2. `$D/logs/` ディレクトリを作成
+3. `$D/artifacts/<task-id>/` ディレクトリを作成
 4. タスクファイルの `status` を `in_progress` に更新（`sed` で `pending` → `in_progress`）
 5. tmux セッションを作成し、以下のコマンドを実行:
 
@@ -57,7 +60,7 @@ tmux new-session -d -s "agent-<task-id>" \
      --model <model> \
      --verbose \
      --output-format stream-json \
-     2>&1 | tee \".claude/claude-dev-orchestrator/logs/<task-id>_<timestamp>.log\"; \
+     2>&1 | tee \"$D/logs/<task-id>_<timestamp>.log\"; \
    echo 'Press Enter to close...'; read"
 ```
 
@@ -80,4 +83,4 @@ tmux new-session -d -s "agent-<task-id>" \
 
 ## 注意
 - `--dangerously-skip-permissions` でバッチ実行するため、事前にユーザー確認を必ず行う
-- `.gitignore` に `.claude/claude-dev-orchestrator/` が含まれていなければ追加する
+- `.gitignore` に `$D/` が含まれていなければ追加する

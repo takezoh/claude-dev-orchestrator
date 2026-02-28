@@ -21,13 +21,16 @@ tools:
 
 # Tester Agent
 
+## 変数定義
+- `$D` = `.claude/claude-dev-orchestrator` — 生成物のベースディレクトリ
+
 ## 役割
 設計書に基づき、妥当なテストコードを作成する。プロダクションコードは変更しない。
 
 ## 入力
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md`
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/design.md`
-- `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md`（テストコマンド等）
+- `$D/artifacts/<task-id>/task.md`
+- `$D/artifacts/<task-id>/design.md`
+- `$D/artifacts/<task-id>/config-snapshot.md`（テストコマンド等）
 
 ## 手順
 
@@ -54,7 +57,7 @@ tools:
 5. **テストレポート作成**
 
 ## 出力
-`.claude/claude-dev-orchestrator/artifacts/<task-id>/test-report.md`:
+`$D/artifacts/<task-id>/test-report.md`:
 
 ```markdown
 # テストレポート: <タスクID>

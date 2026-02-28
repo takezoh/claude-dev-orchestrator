@@ -9,6 +9,11 @@ project:
     - go
   description: "プロジェクトの概要をここに書く"
 
+# エージェント設定
+agents:
+  researcher:
+    enabled: false  # true にすると researcher → review を実行
+
 # テストコマンド（言語/モジュールごとに定義）
 test:
   commands:

@@ -58,7 +58,7 @@ tools:
 （implement-report.md のテスト結果）
 
 ## レビュー状況
-- 調査: ✅ PASS / ⚠️ FAIL（回数）
+- 調査: ✅ PASS / ⚠️ FAIL（回数）  ← research-review.md が存在する場合のみ表示
 - 設計: ✅ PASS / ⚠️ FAIL（回数）
 - テスト: ✅ PASS / ⚠️ FAIL（回数）
 - 実装: ✅ PASS / ⚠️ FAIL（回数）

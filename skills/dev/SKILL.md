@@ -13,6 +13,7 @@
 - レビューループの上限回数
 - PR設定（draft、ラベル、ベースブランチ）
 設定ファイルが存在しない場合は以下のデフォルトを使用する:
+- agents.researcher.enabled: false
 - テスト: 検出不可（スキップ）
 - レビュー上限: research=2, design=2, test=2, implement=3
 - PR: draft=true
@@ -26,6 +27,8 @@
 
 ## 実行フロー
 
+**注意**: `agents.researcher.enabled` の設定により、フローが分岐する。Step 番号は固定ではなく、researcher の有無で動的に進行する。
+
 ### Step 0: 準備
 1. `.claude/dev-orchestrator.yml` を読み込む（なければデフォルト使用）
 2. `$D/tasks/<task-id>.md` を読み込む
@@ -33,7 +36,9 @@
 4. タスク内容を `$D/artifacts/<task-id>/task.md` に保存する
 5. 設定内容を `$D/artifacts/<task-id>/config-snapshot.md` に保存する（デバッグ用）
 
-### Step 1: 情報収集 (Research)
+### 情報収集 (Research) — `agents.researcher.enabled: true` の場合のみ
+> この Step は `agents.researcher.enabled: false`（デフォルト）の場合はスキップする。
+
 1. `researcher` AgentをSubAgentとして起動する
    - 入力: `$D/artifacts/<task-id>/task.md`
    - 出力: `$D/artifacts/<task-id>/research.md`
@@ -43,16 +48,18 @@
    - 出力: `$D/artifacts/<task-id>/research-review.md`
 3. FAILなら修正を依頼する（設定の max_retries.research 回まで）
 
-### Step 2: 設計 (Design)
+### 設計 (Design)
 1. `designer` AgentをSubAgentとして起動する
-   - 入力: task.md + research.md
+   - **researcher 有効時**: 入力は task.md + research.md
+   - **researcher 無効時（デフォルト）**: 入力は task.md のみ（designer が自分でコード調査を実施する）
    - 出力: `$D/artifacts/<task-id>/design.md`
 2. `reviewer` AgentにSubAgentとしてレビューを依頼する
    - レビュー観点: 「設計はタスク要件を満たしているか、既存アーキテクチャと整合性があるか」
+   - **researcher 無効時は追加観点**: 「design.md の調査サマリーに、関連ファイルの見落としや依存関係の漏れがないか」
    - 出力: `$D/artifacts/<task-id>/design-review.md`
 3. FAILなら修正を依頼する（設定の max_retries.design 回まで）
 
-### Step 3: テスト作成 (Test)
+### テスト作成 (Test)
 1. `tester` AgentをSubAgentとして起動する
    - 入力: task.md + design.md + config-snapshot.md
    - 実行: 設計書のテスト戦略に基づきテストコードを作成
@@ -62,7 +69,7 @@
    - 出力: `$D/artifacts/<task-id>/test-review.md`
 3. FAILなら修正を依頼する（設定の max_retries.test 回まで）
 
-### Step 4: 実装 (Implement)
+### 実装 (Implement)
 1. `implementer` AgentをSubAgentとして起動する
    - 入力: task.md + design.md + config-snapshot.md + test-report.md（テストコードは既にワークツリーに存在）
    - 実行: コード実装 + テスト実行（設定のtest.commandsを使用）
@@ -71,10 +78,10 @@
    - レビュー観点: 「設計通りか、テスト全パスか、規約違反ないか」
    - 出力: `$D/artifacts/<task-id>/implement-review.md`
 3. FAILの場合:
-   - reviewerが `test_issue: true` と判定 → tester (Step 3) に差し戻し
+   - reviewerが `test_issue: true` と判定 → tester に差し戻し
    - それ以外 → implementer をリトライ（設定の max_retries.implement 回まで）
 
-### Step 5: PR作成 (Create PR)
+### PR作成 (Create PR)
 1. `pr-creator` AgentをSubAgentとして起動する
    - 入力: `$D/artifacts/<task-id>/` 配下の全Artifact + 設定のpr.*
    - 実行: git commit + git push + gh pr create

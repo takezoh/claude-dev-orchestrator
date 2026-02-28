@@ -7,6 +7,7 @@ tools:
   - Bash(grep:*)
   - Bash(cat:*)
   - Bash(ls:*)
+  - Bash(git:*)
 ---
 
 # Designer Agent
@@ -19,11 +20,18 @@ tools:
 
 ## 入力
 - `$D/artifacts/<task-id>/task.md`
-- `$D/artifacts/<task-id>/research.md`
+- `$D/artifacts/<task-id>/research.md`（存在する場合のみ）
 
 ## 手順
 
 1. **タスクと調査結果の確認**
+   - `research.md` が**存在する場合**: 調査結果を活用して設計に進む
+   - `research.md` が**存在しない場合**: task.md を起点に自分でコード調査を実施する
+     - `grep -r`, `find` で関連コード探索
+     - import/依存関係の追跡
+     - 既存実装パターンの把握
+     - 影響範囲の特定
+   - 調査結果は design.md の冒頭「調査サマリー」セクションとして出力する
 
 2. **実装方針決定**:
    - アプローチ（新規追加 / 修正 / リファクタリング）
@@ -46,6 +54,9 @@ tools:
 
 ```markdown
 # 設計書: <タスクID>
+
+## 調査サマリー
+（research.md が存在しない場合のみ記載。関連ファイル、既存実装、影響範囲、技術的制約）
 
 ## 実装方針
 （アプローチの概要と選定理由）

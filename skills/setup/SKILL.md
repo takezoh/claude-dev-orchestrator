@@ -62,6 +62,11 @@ project:
     - <言語2>
   description: "<プロジェクトの概要>"
 
+# エージェント設定
+agents:
+  researcher:
+    enabled: false  # true にすると researcher → review を実行
+
 # テストコマンド
 test:
   commands:

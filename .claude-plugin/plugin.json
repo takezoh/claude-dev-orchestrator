@@ -1,0 +1,17 @@
+{
+  "name": "dev-orchestrator",
+  "version": "0.1.0",
+  "description": "Orchestrator型開発自動化プラグイン。タスクを定義して寝れば、朝にはDraft PRが出来ている。",
+  "author": {
+    "name": "takezoh"
+  },
+  "repository": "https://github.com/takezoh/claude-dev-orchestrator",
+  "license": "MIT",
+  "keywords": [
+    "orchestrator",
+    "automation",
+    "subagent",
+    "development",
+    "pr-creation"
+  ]
+}

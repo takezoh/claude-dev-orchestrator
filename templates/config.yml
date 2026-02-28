@@ -1,0 +1,49 @@
+# claude-dev-orchestrator 設定ファイル
+# プロジェクトルートの .claude/dev-orchestrator.yml にコピーして編集してください
+
+# プロジェクト情報
+project:
+  name: "my-project"
+  languages:
+    - typescript
+    - go
+  description: "プロジェクトの概要をここに書く"
+
+# テストコマンド（言語/モジュールごとに定義）
+test:
+  commands:
+    - name: "TypeScript"
+      run: "npm test"
+    - name: "Go"
+      run: "go test ./..."
+  # テスト実行前にビルドが必要な場合
+  # build: "npm run build"
+
+# リント/フォーマット
+lint:
+  commands:
+    - "npm run lint"
+    # - "golangci-lint run"
+
+# PRの設定
+pr:
+  draft: true
+  # ラベル自動付与（省略可）
+  # labels:
+  #   - "auto-generated"
+  # ベースブランチ（省略時はデフォルトブランチ）
+  # base: "develop"
+
+# レビューループ上限回数
+review:
+  max_retries:
+    research: 2
+    design: 2
+    test: 2
+    implement: 3
+
+# Claude Codeモデル設定
+model: "claude-sonnet-4-6"
+
+# Artifact（Agent間成果物）の保存先（gitignore対象）
+artifacts_dir: ".agent-artifacts"

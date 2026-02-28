@@ -1,0 +1,14 @@
+{
+  "name": "claude-dev-orchestrator",
+  "owner": {
+    "name": "takezoh"
+  },
+  "plugins": [
+    {
+      "name": "dev-orchestrator",
+      "source": "./",
+      "description": "Orchestrator型開発自動化プラグイン。タスクを定義して寝れば、朝にはDraft PRが出来ている。",
+      "version": "0.1.0"
+    }
+  ]
+}

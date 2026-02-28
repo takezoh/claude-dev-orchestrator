@@ -19,13 +19,13 @@
 - ログ: `.claude/claude-dev-orchestrator/logs/`
 
 ## タスク定義の読み込み
-タスクIDをもとに `tasks/<task-id>.md` を読み込む。
+タスクIDをもとに `.claude/claude-dev-orchestrator/tasks/<task-id>.md` を読み込む。
 
 ## 実行フロー
 
 ### Step 0: 準備
 1. `.claude/dev-orchestrator.yml` を読み込む（なければデフォルト使用）
-2. `tasks/<task-id>.md` を読み込む
+2. `.claude/claude-dev-orchestrator/tasks/<task-id>.md` を読み込む
 3. `.claude/claude-dev-orchestrator/artifacts/<task-id>/` ディレクトリを作成する
 4. タスク内容を `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md` に保存する
 5. 設定内容を `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md` に保存する（デバッグ用）

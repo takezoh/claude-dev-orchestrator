@@ -12,7 +12,7 @@
 ### Step 1: プロジェクト状態の確認
 1. 以下のファイル/ディレクトリの存在を確認する:
    - `.claude/dev-orchestrator.yml`
-   - `tasks/`
+   - `.claude/claude-dev-orchestrator/tasks/`
    - `.claude/settings.json`（permissions.allow）
    - `.gitignore`
 2. 既にセットアップ済みの項目をリストアップする
@@ -91,8 +91,8 @@ model: "claude-sonnet-4-6"
 # logs: .claude/claude-dev-orchestrator/logs/
 ```
 
-#### 3-2. `tasks/` ディレクトリの作成
-- `tasks/` がなければ作成する
+#### 3-2. `.claude/claude-dev-orchestrator/tasks/` ディレクトリの作成
+- `.claude/claude-dev-orchestrator/tasks/` がなければ作成する
 
 #### 3-3. `.gitignore` の更新
 以下のエントリが `.gitignore` になければ追加する:
@@ -126,7 +126,7 @@ model: "claude-sonnet-4-6"
 ```
 セットアップ完了:
   ✅ .claude/dev-orchestrator.yml を作成
-  ✅ tasks/ を作成
+  ✅ .claude/claude-dev-orchestrator/tasks/ を作成
   ✅ .gitignore を更新
   ✅ パーミッション設定を追加（N項目）
   ⚠️ スキップ: <既に存在した項目>

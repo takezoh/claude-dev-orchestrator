@@ -31,7 +31,7 @@ gh pr list --draft --json number,title,url
 #### 2-3. タスク別 Artifact 確認
 `.claude/claude-dev-orchestrator/artifacts/*/` の各ディレクトリについて:
 1. タスクIDを取得（ディレクトリ名）
-2. `tasks/<task-id>.md` から `status` を取得
+2. `.claude/claude-dev-orchestrator/tasks/<task-id>.md` から `status` を取得
 3. `*-review.md` ファイルから各ステップのレビュー判定（PASS/FAIL）を取得
 4. `pr-url.txt` が存在すれば PR URL を表示
 5. `error.md` が存在すれば警告を表示

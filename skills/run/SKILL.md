@@ -1,7 +1,7 @@
 # run Skill - pendingタスクをバッチ実行
 
 ## 概要
-`tasks/` 内の pending タスクを tmux セッションで並列バッチ実行する。
+`.claude/claude-dev-orchestrator/tasks/` 内の pending タスクを tmux セッションで並列バッチ実行する。
 各タスクは独立した worktree と Claude Code プロセスで処理される。
 
 ## 入力
@@ -18,7 +18,7 @@
 
 ### Step 2: 対象タスクの特定
 1. `$ARGUMENTS` が指定されていればそれを対象とする
-2. 未指定なら `tasks/task-*.md` から `status: pending` のものを番号順に収集する
+2. 未指定なら `.claude/claude-dev-orchestrator/tasks/task-*.md` から `status: pending` のものを番号順に収集する
 3. 対象タスクが0件なら「pending タスクがありません」と報告して終了
 
 ### Step 3: 事前チェック

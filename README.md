@@ -7,7 +7,7 @@ Claude Code 用の Orchestrator 型開発自動化プラグイン。
 ## 仕組み
 
 ```
-「認証機能のタスクを作って」 →  tasks/task-1.md (status: pending)
+「認証機能のタスクを作って」 →  .claude/claude-dev-orchestrator/tasks/task-1.md (status: pending)
                                     ↓
 「task-1 を実行して」 または  /run (tmux並列)
                               ↓
@@ -62,7 +62,7 @@ claude
 対話的にプロジェクト情報をヒアリングし、以下を構成する:
 
 - `.claude/dev-orchestrator.yml` — テスト・リントコマンド、PR設定等
-- `tasks/` — タスク定義ディレクトリ
+- `.claude/claude-dev-orchestrator/tasks/` — タスク定義ディレクトリ
 - `.gitignore` — `.claude/claude-dev-orchestrator/` を追加
 - `.claude/settings.json` — Agent/Skill が使うパーミッション設定
 
@@ -153,7 +153,7 @@ model: "claude-sonnet-4-6"
 claude plugin remove dev-orchestrator
 ```
 
-プロジェクト側のファイル（`.claude/dev-orchestrator.yml`、`tasks/` 等）はユーザーデータのため自動削除されない。必要に応じて手動で削除する。
+プロジェクト側のファイル（`.claude/dev-orchestrator.yml`、`.claude/claude-dev-orchestrator/` 等）はユーザーデータのため自動削除されない。必要に応じて手動で削除する。
 
 ## 設計思想
 

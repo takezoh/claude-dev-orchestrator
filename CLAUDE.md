@@ -54,7 +54,7 @@ tools:
 
 ## タスクファイルの書き方
 
-`tasks/task-N.md` は以下の形式:
+`.claude/claude-dev-orchestrator/tasks/task-N.md` は以下の形式:
 
 ```markdown
 ---

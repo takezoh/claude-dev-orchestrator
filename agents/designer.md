@@ -15,8 +15,8 @@ tools:
 調査レポートをもとに具体的な実装設計を策定する。コード変更は行わない。
 
 ## 入力
-- `<artifacts_dir>/<task-id>/task.md`
-- `<artifacts_dir>/<task-id>/research.md`
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md`
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/research.md`
 
 ## 手順
 
@@ -31,7 +31,7 @@ tools:
    - 依存関係を考慮した変更順序
 
 4. **テスト戦略**:
-   - `<artifacts_dir>/<task-id>/config-snapshot.md` のテストコマンドを参照
+   - `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md` のテストコマンドを参照
    - 具体的なテストケースを正常系・異常系・エッジケースに分けて列挙する
    - tester Agentがこのリストに基づきテストを作成するため、テスト名・検証内容を明確に記述する
    - 既存テストへの影響も記載する
@@ -39,7 +39,7 @@ tools:
 5. **リスク洗い出し**: 破壊的変更、パフォーマンス影響、後方互換性
 
 ## 出力
-`<artifacts_dir>/<task-id>/design.md` に以下の構造で書き出す:
+`.claude/claude-dev-orchestrator/artifacts/<task-id>/design.md` に以下の構造で書き出す:
 
 ```markdown
 # 設計書: <タスクID>

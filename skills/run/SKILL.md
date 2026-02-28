@@ -14,7 +14,7 @@
 ### Step 1: 設定読み込み
 1. `.claude/dev-orchestrator.yml` を読み込む（なければデフォルト使用）
    - `model`: 使用モデル（デフォルト: `claude-sonnet-4-6`）
-   - `artifacts_dir`: Artifact保存先（デフォルト: `.agent-artifacts`）
+   - 生成物保存先: `.claude/claude-dev-orchestrator/`
 
 ### Step 2: 対象タスクの特定
 1. `$ARGUMENTS` が指定されていればそれを対象とする
@@ -42,8 +42,8 @@
 ユーザーが承認した場合、各タスクについて以下を実行する:
 
 1. 既に同名の tmux セッション（`agent-<task-id>`）が存在する場合はスキップ
-2. `agent-logs/` ディレクトリを作成
-3. `<artifacts_dir>/<task-id>/` ディレクトリを作成
+2. `.claude/claude-dev-orchestrator/logs/` ディレクトリを作成
+3. `.claude/claude-dev-orchestrator/artifacts/<task-id>/` ディレクトリを作成
 4. タスクファイルの `status` を `in_progress` に更新（`sed` で `pending` → `in_progress`）
 5. tmux セッションを作成し、以下のコマンドを実行:
 
@@ -57,7 +57,7 @@ tmux new-session -d -s "agent-<task-id>" \
      --model <model> \
      --verbose \
      --output-format stream-json \
-     2>&1 | tee \"agent-logs/<task-id>_<timestamp>.log\"; \
+     2>&1 | tee \".claude/claude-dev-orchestrator/logs/<task-id>_<timestamp>.log\"; \
    echo 'Press Enter to close...'; read"
 ```
 
@@ -80,4 +80,4 @@ tmux new-session -d -s "agent-<task-id>" \
 
 ## 注意
 - `--dangerously-skip-permissions` でバッチ実行するため、事前にユーザー確認を必ず行う
-- `.gitignore` に `<artifacts_dir>/` と `agent-logs/` が含まれていなければ追加する
+- `.gitignore` に `.claude/claude-dev-orchestrator/` が含まれていなければ追加する

@@ -45,5 +45,6 @@ review:
 # Claude Codeモデル設定
 model: "claude-sonnet-4-6"
 
-# Artifact（Agent間成果物）の保存先（gitignore対象）
-artifacts_dir: ".agent-artifacts"
+# 生成物の保存先（.claude/claude-dev-orchestrator/ 配下に固定）
+# artifacts: .claude/claude-dev-orchestrator/artifacts/<task-id>/
+# logs: .claude/claude-dev-orchestrator/logs/

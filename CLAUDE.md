@@ -49,7 +49,7 @@ tools:
 
 - `tools:` は必要最小限にする
 - 読み取り専用Agentには Write を与えない
-- 出力は必ずファイル経由（`<artifacts_dir>/<task-id>/` 配下）
+- 出力は必ずファイル経由（`.claude/claude-dev-orchestrator/artifacts/<task-id>/` 配下）
 - パーミッションを追加・変更した場合は `templates/permissions.json` も更新する
 
 ## タスクファイルの書き方
@@ -78,5 +78,5 @@ status: pending
 
 - ドキュメント・コメントは日本語
 - プラグインとして配布するため、特定プロジェクトへのハードコード禁止
-- `artifacts_dir`（デフォルト `.agent-artifacts/`）と `agent-logs/` は gitignore 対象
+- `.claude/claude-dev-orchestrator/` は gitignore 対象（artifacts と logs を格納）
 - `templates/permissions.json` はパーミッション定義の単一ソース — agents の tools 変更時は必ず同期する

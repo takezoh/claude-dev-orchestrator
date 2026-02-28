@@ -15,18 +15,18 @@ tools:
 実装済みのコードを commit し、GitHub 上に PR を作成する。
 
 ## 入力
-- `<artifacts_dir>/<task-id>/` 配下の全Artifact
-- `<artifacts_dir>/<task-id>/config-snapshot.md`（PR設定: draft, labels, base）
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/` 配下の全Artifact
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md`（PR設定: draft, labels, base）
 
 ## 手順
 
 1. **変更確認**:
    - `git status` `git diff --stat` で変更ファイルを確認
-   - `<artifacts_dir>/` 配下のファイルが混ざっていないことを確認
+   - `.claude/claude-dev-orchestrator/` 配下のファイルが混ざっていないことを確認
 
 2. **ステージング**:
    - `git add` で実装ファイルのみステージング
-   - `<artifacts_dir>/` は除外する
+   - `.claude/claude-dev-orchestrator/` は除外する
 
 3. **コミット**:
    - Conventional Commits 形式
@@ -67,9 +67,9 @@ tools:
 🤖 このPRは [claude-dev-orchestrator](https://github.com/your-name/claude-dev-orchestrator) によって自動生成されました。
 ```
 
-6. **PR URL保存**: `<artifacts_dir>/<task-id>/pr-url.txt`
+6. **PR URL保存**: `.claude/claude-dev-orchestrator/artifacts/<task-id>/pr-url.txt`
 
 ## 注意
-- `<artifacts_dir>/` 配下はcommitに含めない
+- `.claude/claude-dev-orchestrator/` 配下はcommitに含めない
 - コミットは1つにまとめる
 - レビューでFAILが残っている場合は ⚠️ を付けて明示する

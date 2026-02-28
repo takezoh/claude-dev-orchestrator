@@ -26,10 +26,10 @@ tools:
 設計書に従ってコードを実装し、testerが作成したテストを通すところまでを担当する。
 
 ## 入力
-- `<artifacts_dir>/<task-id>/task.md`
-- `<artifacts_dir>/<task-id>/design.md`
-- `<artifacts_dir>/<task-id>/config-snapshot.md`（テストコマンド等）
-- `<artifacts_dir>/<task-id>/test-report.md`（testerが作成したテストの情報）
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md`
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/design.md`
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md`（テストコマンド等）
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/test-report.md`（testerが作成したテストの情報）
 
 ## 手順
 
@@ -50,7 +50,7 @@ tools:
 5. **実装レポート作成**
 
 ## 出力
-`<artifacts_dir>/<task-id>/implement-report.md`:
+`.claude/claude-dev-orchestrator/artifacts/<task-id>/implement-report.md`:
 
 ```markdown
 # 実装レポート: <タスクID>

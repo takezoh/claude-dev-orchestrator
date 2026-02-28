@@ -86,8 +86,9 @@ review:
 # Claude Codeモデル設定
 model: "claude-sonnet-4-6"
 
-# Artifact（Agent間成果物）の保存先（gitignore対象）
-artifacts_dir: ".agent-artifacts"
+# 生成物の保存先（.claude/claude-dev-orchestrator/ 配下に固定）
+# artifacts: .claude/claude-dev-orchestrator/artifacts/<task-id>/
+# logs: .claude/claude-dev-orchestrator/logs/
 ```
 
 #### 3-2. `tasks/` ディレクトリの作成
@@ -95,8 +96,7 @@ artifacts_dir: ".agent-artifacts"
 
 #### 3-3. `.gitignore` の更新
 以下のエントリが `.gitignore` になければ追加する:
-- `.agent-artifacts/`
-- `agent-logs/`
+- `.claude/claude-dev-orchestrator/`
 
 #### 3-4. パーミッション設定
 `.claude/settings.json` に Agent/Skill が使うコマンドの allow ルールを追加する。

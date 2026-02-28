@@ -63,7 +63,7 @@ claude
 
 - `.claude/dev-orchestrator.yml` — テスト・リントコマンド、PR設定等
 - `tasks/` — タスク定義ディレクトリ
-- `.gitignore` — `.agent-artifacts/` と `agent-logs/` を追加
+- `.gitignore` — `.claude/claude-dev-orchestrator/` を追加
 - `.claude/settings.json` — Agent/Skill が使うパーミッション設定
 
 ## 使い方

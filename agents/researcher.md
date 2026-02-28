@@ -17,7 +17,7 @@ tools:
 コードの変更は行わない（読み取り専用）。
 
 ## 入力
-- `<artifacts_dir>/<task-id>/task.md` からタスク定義を読む
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md` からタスク定義を読む
 - `CLAUDE.md` からプロジェクトの規約・構成を把握する
 
 ## 手順
@@ -40,7 +40,7 @@ tools:
    - 他モジュールとの依存関係
 
 ## 出力
-`<artifacts_dir>/<task-id>/research.md` に以下の構造で書き出す:
+`.claude/claude-dev-orchestrator/artifacts/<task-id>/research.md` に以下の構造で書き出す:
 
 ```markdown
 # 調査レポート: <タスクID>

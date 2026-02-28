@@ -25,9 +25,9 @@ tools:
 設計書に基づき、妥当なテストコードを作成する。プロダクションコードは変更しない。
 
 ## 入力
-- `<artifacts_dir>/<task-id>/task.md`
-- `<artifacts_dir>/<task-id>/design.md`
-- `<artifacts_dir>/<task-id>/config-snapshot.md`（テストコマンド等）
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/task.md`
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/design.md`
+- `.claude/claude-dev-orchestrator/artifacts/<task-id>/config-snapshot.md`（テストコマンド等）
 
 ## 手順
 
@@ -54,7 +54,7 @@ tools:
 5. **テストレポート作成**
 
 ## 出力
-`<artifacts_dir>/<task-id>/test-report.md`:
+`.claude/claude-dev-orchestrator/artifacts/<task-id>/test-report.md`:
 
 ```markdown
 # テストレポート: <タスクID>

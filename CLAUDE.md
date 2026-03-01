@@ -10,10 +10,18 @@ Claude Code プラグイン「dev-orchestrator」のソースコード。
 ```
 agents/          SubAgent定義（frontmatter + markdown）
 commands/        スラッシュコマンド（/setup, /run, /check）
-skills/          Skill定義（dev, task, setup, run, check）
+skills/          Skill定義（dev, task）
 templates/       テンプレート（config.yml, permissions.json）
 .claude-plugin/  プラグインメタデータ
 ```
+
+## コマンド一覧
+
+| コマンド | 概要 | 呼び出し方 |
+|---|---|---|
+| setup | プロジェクト初期セットアップ | `/setup` |
+| run | tmuxバッチ実行 | `/run [task-id...]` |
+| check | 実行結果の確認 | `/check` |
 
 ## Skill一覧
 
@@ -21,9 +29,6 @@ templates/       テンプレート（config.yml, permissions.json）
 |---|---|---|
 | dev | Orchestrator型の全自動実行 | 「task-1 を実行して」 |
 | task | タスク定義の作成 | 「認証機能のタスクを作って」 |
-| setup | プロジェクト初期セットアップ | `/setup` |
-| run | tmuxバッチ実行 | `/run [task-id...]` |
-| check | 実行結果の確認 | `/check` |
 
 ## Agent定義の書き方
 

@@ -48,7 +48,8 @@ gh auth login
 ## インストール
 
 ```bash
-claude plugin add /path/to/claude-dev-orchestrator
+claude plugin marketplace add /path/to/claude-dev-orchestrator
+claude plugin install dev-orchestrator@claude-dev-orchestrator
 ```
 
 ## セットアップ

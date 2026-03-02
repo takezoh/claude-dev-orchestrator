@@ -151,7 +151,7 @@ model: "claude-sonnet-4-6"
 ## アンインストール
 
 ```bash
-claude plugin remove dev-orchestrator
+claude plugin remove dev-orchestrator@claude-dev-orchestrator
 ```
 
 プロジェクト側のファイル（`.claude/dev-orchestrator.yml`、`.claude/claude-dev-orchestrator/` 等）はユーザーデータのため自動削除されない。必要に応じて手動で削除する。

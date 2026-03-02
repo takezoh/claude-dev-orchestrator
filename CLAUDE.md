@@ -5,13 +5,14 @@
 Claude Code プラグイン「dev-orchestrator」のソースコード。
 ユーザーのプロジェクトにインストールして使う。このリポジトリ自体を開発対象として変更する場合の指示が以下。
 
+**前提**: コマンド・スキル・Agentはすべてユーザーのプロジェクトで実行される。プラグイン内のファイルを実行時に参照することはできないため、実行時に必要な情報はコマンド/スキル定義にインラインで記載すること。
+
 ## 構成
 
 ```
 agents/          SubAgent定義（frontmatter + markdown）
 commands/        スラッシュコマンド（/setup, /run, /check）
 skills/          Skill定義（dev, task）
-templates/       テンプレート（config.yml, permissions.json）
 .claude-plugin/  プラグインメタデータ
 ```
 
@@ -55,7 +56,7 @@ tools:
 - `tools:` は必要最小限にする
 - 読み取り専用Agentには Write を与えない
 - 出力は必ずファイル経由（`$D/artifacts/<task-id>/` 配下、`$D` = `.claude/claude-dev-orchestrator`）
-- パーミッションを追加・変更した場合は `templates/permissions.json` も更新する
+- パーミッションを追加・変更した場合は `commands/setup.md` のパーミッション定義も同期する
 
 ## タスクファイルの書き方
 
@@ -84,4 +85,4 @@ status: pending
 - ドキュメント・コメントは日本語
 - プラグインとして配布するため、特定プロジェクトへのハードコード禁止
 - `$D/`（`.claude/claude-dev-orchestrator/`）は gitignore 対象（artifacts, logs, tasks を格納）
-- `templates/permissions.json` はパーミッション定義の単一ソース — agents の tools 変更時は必ず同期する
+- `commands/setup.md` のパーミッション定義が単一ソース — agents の tools 変更時は必ず同期する

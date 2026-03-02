@@ -109,10 +109,17 @@ model: "claude-sonnet-4-6"
 #### 3-4. パーミッション設定
 `.claude/settings.json` に Agent/Skill が使うコマンドの allow ルールを追加する。
 
-1. プラグインの `templates/permissions.json` を読み込む
-   - `permissions.core.allow` — 全Agent共通（ファイル操作・探索）
-   - `permissions.vcs.allow` — バージョン管理・GitHub連携
-   - `permissions.languages.<lang>` — 言語別のビルド・テストコマンド
+1. 以下のパーミッション定義を使用する:
+   - **core**（全Agent共通 — ファイル操作・探索）: `Read`, `Write`, `Bash(cat:*)`, `Bash(find:*)`, `Bash(grep:*)`, `Bash(ls:*)`
+   - **vcs**（バージョン管理・GitHub連携）: `Bash(git:*)`, `Bash(gh:*)`
+   - **languages**（言語別のビルド・テストコマンド）:
+     - go: `Bash(go:*)`
+     - rust: `Bash(cargo:*)`
+     - python: `Bash(python:*)`, `Bash(pytest:*)`
+     - nodejs: `Bash(npm:*)`, `Bash(npx:*)`
+     - yarn: `Bash(yarn:*)`
+     - pnpm: `Bash(pnpm:*)`
+     - make: `Bash(make:*)`
 2. 現在の `.claude/settings.json` の `permissions.allow` を読み取り、追加が必要なものを特定する
 
 **ユーザーに確認を求める（AskUserQuestion を使用）:**
